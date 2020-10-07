@@ -2,6 +2,8 @@
 
 @section('content')
 
+<p> {!! link_to_route('signup.get', 'Testlink for SignUp', [], ['class' => 'btn btn-lg btn-primary']) !!}</p>
+
     <h1>タスク一覧</h1>
 
     @if (count($tasks) > 0)
