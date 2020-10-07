@@ -15,6 +15,8 @@ class TasksController extends Controller
      */
     public function index()
     {
+    //    if(!Auth::check()){ return redirect('/signup'); }
+        
         $tasks = Task::orderBy('id', 'desc')->paginate(25);
 
         return view('tasks.index', [

@@ -2,9 +2,16 @@
 
 @section('content')
 
-<p> {!! link_to_route('signup.get', 'Testlink for SignUp', [], ['class' => 'btn btn-lg btn-primary']) !!}</p>
+<p>
+{!! link_to_route('signup.get', 'Test SignUp', [], ['class' => 'btn btn-lg btn-primary']) !!}
+{!! link_to_route('login', 'Test Login', [], ['class' => 'btn btn-lg btn-primary']) !!}
+{!! link_to_route('logout.get', 'Test Logout', [], ['class' => 'btn btn-lg btn-primary']) !!}
+</p>
 
-    <h1>タスク一覧</h1>
+@if (!Auth::check())
+    {!! redirect('/login') !!}
+@else
+    <h1>{{ Auth::user()->name }}さんのタスク一覧</h1>
 
     @if (count($tasks) > 0)
         <table class="table table-striped">
@@ -27,6 +34,7 @@
             </tbody>
         </table>
     @endif
+@endif
 
     {{-- ページネーションのリンク --}}
     {{ $tasks->links() }}
