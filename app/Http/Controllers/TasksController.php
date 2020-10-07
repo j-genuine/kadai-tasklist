@@ -127,10 +127,12 @@ class TasksController extends Controller
         
         $task = Task::findOrFail($id);
 
-        $request->user()->tasks()->update([
-            'content' => $request->content,
-            'status' => $request->status,
-        ]);
+        if (\Auth::id() === $task->user_id) {
+            $task->update([
+                'content' => $request->content,
+                'status' => $request->status,
+            ]);
+        }
         
         /*
         $task->content = $request->content;
